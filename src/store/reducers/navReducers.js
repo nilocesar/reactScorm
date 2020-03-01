@@ -1,3 +1,4 @@
+// import { useHistory } from 'react-router-dom';
 
 const initialState = {
   evt: 'go',
@@ -5,6 +6,7 @@ const initialState = {
   tela: '/Aa1/',
 };
 
+// const history = useHistory();
 
 const TYPE_EVENT = 'NAV_EVENT';
 
@@ -26,6 +28,9 @@ export default (state = initialState, action) => {
           }
 
           state.tela = `/Aa${state.ind}/`;
+
+
+          console.log(state.tela);
 
           return { ...state, evt: action.evt, ind: state.ind, tela: state.tela };
         }

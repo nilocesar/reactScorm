@@ -1,6 +1,4 @@
-import { combineReducers } from 'redux';
-import preloader from './reducers/preloader';
-import nav from './reducers/nav';
-import scorm from './reducers/scorm';
+import { createStore } from 'redux';
+import reducers from './reducers';
 
-export default combineReducers({ preloader, nav, scorm });
+export default createStore(reducers);

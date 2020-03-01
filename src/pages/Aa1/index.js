@@ -1,17 +1,17 @@
 import React from 'react';
-import { connect } from 'react-redux';
+// import { connect } from 'react-redux';
 
 
 import Layout from '../../components/layout';
 
 import * as S from './styles';
 
-import { navMode } from '../../store/reducers/nav';
+// import { navMode } from '../../store/reducers/nav';
 // import { scormMode } from '../../state/reducers/scorm'
 
-const Aa1 = ({ indiceNav, dispatch }) => {
+const Aa1 = () => {
   const iniciar = () => {
-    dispatch(navMode('go', 2));
+    // dispatch(navMode('go', 2));
   };
 
   return (
@@ -38,4 +38,4 @@ const Aa1 = ({ indiceNav, dispatch }) => {
   );
 };
 
-export default connect(state => ({ indiceNav: state.nav.indiceNav }), null)(Aa1);
+export default Aa1;

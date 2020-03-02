@@ -1,43 +1,56 @@
-// import { useHistory } from 'react-router-dom';
+import { push } from 'connected-react-router';
 
 const initialState = {
-  evt: 'go',
   ind: 1,
   tela: '/Aa1/',
 };
 
-// const history = useHistory();
-
 const TYPE_EVENT = 'NAV_EVENT';
 
-
 export const navEvent = (evt, ind) => dispatch => {
-  dispatch({ type: TYPE_EVENT, evt, ind });
+  dispatch({ type: evt, ind });
+  dispatch(push(`/Aa${ind}/`));
 };
 
-export default (state = initialState, action) => {
+
+export const nav = (state = initialState, action) => {
   switch (action.type) {
     case TYPE_EVENT:
-        {
-          if (action.evt === 'prev') {
-            state.ind -= 1;
-          } else if (action.evt === 'next') {
-            state.ind += 1;
-          } else if (action.evt === 'go') {
-            state.ind = action.ind;
-          }
-
-          state.tela = `/Aa${state.ind}/`;
-
-
-          console.log(state.tela);
-
-          return { ...state, evt: action.evt, ind: state.ind, tela: state.tela };
-        }
+      return {
+        ...state,
+        ind: action.ind,
+        tela: `/Aa${action.ind}/`,
+      };
     default:
-        return state;
-    }
+      return state;
+  }
 };
+
+
+// export default (state = initialState, action) => {
+//   switch (action.type) {
+//     case TYPE_EVENT:
+//         {
+//           if (action.evt === 'prev') {
+//             state.ind -= 1;
+//           } else if (action.evt === 'next') {
+//             state.ind += 1;
+//           } else if (action.evt === 'go') {
+//             state.ind = action.ind;
+//           }
+
+//           state.tela = `/Aa${state.ind}/`;
+
+
+//           console.log(state.tela);
+
+
+//           return { ...state, evt: action.evt, ind: state.ind, tela: state.tela };
+//         }
+//     default:
+//         return state;
+//     }
+// };
 
 
 // const TYPE_EVENT = 'NAV_EVENT';

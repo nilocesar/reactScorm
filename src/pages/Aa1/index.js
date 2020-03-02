@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
+import PropTypes from 'prop-types';
 import Layout from '../../components/layout';
 
 import * as S from './styles';
@@ -8,10 +9,9 @@ import * as S from './styles';
 import * as navActions from '../../store/reducers/navReducers';
 // import { scormMode } from '../../state/reducers/scorm'
 
-const Aa1 = ({ navEvent }) => {
+const Aa1 = ({ ind, navEvent }) => {
   const iniciar = () => {
-    // history.push('/aa2');
-      navEvent('go', 2);
+    navEvent('NAV_EVENT', 2);
   };
 
   return (
@@ -38,4 +38,10 @@ const Aa1 = ({ navEvent }) => {
   );
 };
 
-export default connect(null, navActions)(Aa1);
+Aa1.propTypes = {
+  ind: PropTypes.number.isRequired,
+  navEvent: PropTypes.func.isRequired,
+};
+
+
+export default connect(state => ({ ind: state.nav.ind }), navActions)(Aa1);

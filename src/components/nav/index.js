@@ -1,18 +1,18 @@
 import React from 'react';
-// import { connect } from 'react-redux';
+import { connect } from 'react-redux';
 
 import PropTypes from 'prop-types';
 import * as S from './styles';
 
-// import { navMode } from '../../state/reducers/nav'
+import * as navActions from '../../store/reducers/navReducers';
 
-const Nav = ({ setaPrev, setaNext }) => {
+const Nav = ({ ind, navEvent, setaPrev, setaNext }) => {
   const Prev = () => {
-    // dispatch(navMode('prev'));
+    navEvent('NAV_EVENT', ind - 1);
   };
 
   const Next = () => {
-    // dispatch(navMode('next'));
+    navEvent('NAV_EVENT', ind + 1);
   };
 
   return (
@@ -24,9 +24,11 @@ const Nav = ({ setaPrev, setaNext }) => {
 };
 
 Nav.propTypes = {
-  setaPrev: PropTypes.bool,
-  setaNext: PropTypes.bool,
+  ind: PropTypes.number.isRequired,
+  navEvent: PropTypes.func.isRequired,
+  setaPrev: PropTypes.bool.isRequired,
+  setaNext: PropTypes.bool.isRequired,
 };
 
 
-export default Nav;
+export default connect(state => ({ ind: state.nav.ind }), navActions)(Nav);

@@ -1,6 +1,10 @@
 import { combineReducers } from 'redux';
-import nav from './navReducers';
+import { connectRouter } from 'connected-react-router';
 
-export default combineReducers({
+import { nav } from './navReducers';
+
+const createRootReducer = history => combineReducers({
+  router: connectRouter(history),
   nav,
 });
+export default createRootReducer;
